@@ -10,14 +10,11 @@ import Foundation
 class todo: ObservableObject{
     @Published var todolist:[ToDoItem]
     var count = 0 //store the number in the array
-//    
-//    init(){
-//        self.todolist = []
-//    }
-    init(data:[ToDoItem]){
+
+    init(data:[ToDoItem]){//
         self.todolist = []
         for item in data{
-            self.todolist.append(ToDoItem(title: item.title, duedate:  item.duedate, id:self.count))
+            self.todolist.append(ToDoItem(title: item.title, duedate:  item.duedate, id:self.count))//append is a way to add elements
             count+=1
             
         }
