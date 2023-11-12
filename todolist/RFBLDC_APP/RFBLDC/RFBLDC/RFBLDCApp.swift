@@ -11,7 +11,8 @@ import SwiftUI
 struct RFBLDCApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+           // ContentView()
+            SplashScreenView()
         }
     }
 }

@@ -1,0 +1,16 @@
+{
+  "images" : [
+    {
+      "filename" : "WeChat7d8ee725670a416d2b4fa8400bfa0f60.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "properties" : {
+    "auto-scaling" : "auto",
+    "compression-type" : "automatic"
+  }
+}

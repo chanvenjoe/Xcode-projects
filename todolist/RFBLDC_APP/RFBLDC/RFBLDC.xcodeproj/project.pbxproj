@@ -14,6 +14,7 @@
 		1D10D7E32A99897000C0B7D7 /* RFBLDCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D10D7E22A99897000C0B7D7 /* RFBLDCTests.swift */; };
 		1D10D7ED2A99897000C0B7D7 /* RFBLDCUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D10D7EC2A99897000C0B7D7 /* RFBLDCUITests.swift */; };
 		1D10D7EF2A99897000C0B7D7 /* RFBLDCUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D10D7EE2A99897000C0B7D7 /* RFBLDCUITestsLaunchTests.swift */; };
+		1DBA360C2AF7BB92006148D9 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBA360B2AF7BB92006148D9 /* SplashScreenView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,8 @@
 		1D10D7E82A99897000C0B7D7 /* RFBLDCUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RFBLDCUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D10D7EC2A99897000C0B7D7 /* RFBLDCUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RFBLDCUITests.swift; sourceTree = "<group>"; };
 		1D10D7EE2A99897000C0B7D7 /* RFBLDCUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RFBLDCUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		1DBA360B2AF7BB92006148D9 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
+		1DC9A3442AF7A6BA002C4181 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,8 +97,10 @@
 		1D10D7D02A99896E00C0B7D7 /* RFBLDC */ = {
 			isa = PBXGroup;
 			children = (
+				1DC9A3442AF7A6BA002C4181 /* Info.plist */,
 				1D10D7D12A99896E00C0B7D7 /* RFBLDCApp.swift */,
 				1D10D7D32A99896E00C0B7D7 /* ContentView.swift */,
+				1DBA360B2AF7BB92006148D9 /* SplashScreenView.swift */,
 				1D10D7D52A99897000C0B7D7 /* Assets.xcassets */,
 				1D10D7D72A99897000C0B7D7 /* Preview Content */,
 			);
@@ -259,6 +264,7 @@
 			files = (
 				1D10D7D42A99896E00C0B7D7 /* ContentView.swift in Sources */,
 				1D10D7D22A99896E00C0B7D7 /* RFBLDCApp.swift in Sources */,
+				1DBA360C2AF7BB92006148D9 /* SplashScreenView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,13 +425,17 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"RFBLDC/Preview Content\"";
+				DEVELOPMENT_TEAM = Q4JX2NJKU4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = RFBLDC/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = RadioFlyer;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Allow this APP to use Bluetooth?";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "Allow BT usage?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -447,13 +457,17 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"RFBLDC/Preview Content\"";
+				DEVELOPMENT_TEAM = Q4JX2NJKU4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = RFBLDC/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = RadioFlyer;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Allow this APP to use Bluetooth?";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "Allow BT usage?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
