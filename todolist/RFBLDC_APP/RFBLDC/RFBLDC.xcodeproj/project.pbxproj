@@ -98,8 +98,8 @@
 			isa = PBXGroup;
 			children = (
 				1DC9A3442AF7A6BA002C4181 /* Info.plist */,
-				1D10D7D12A99896E00C0B7D7 /* RFBLDCApp.swift */,
 				1D10D7D32A99896E00C0B7D7 /* ContentView.swift */,
+				1D10D7D12A99896E00C0B7D7 /* RFBLDCApp.swift */,
 				1DBA360B2AF7BB92006148D9 /* SplashScreenView.swift */,
 				1D10D7D52A99897000C0B7D7 /* Assets.xcassets */,
 				1D10D7D72A99897000C0B7D7 /* Preview Content */,
@@ -430,8 +430,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RFBLDC/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = RadioFlyer;
-				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Allow this APP to use Bluetooth?";
-				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "Allow BT usage?";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Alow this APP use Bluetooth?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -462,8 +461,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RFBLDC/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = RadioFlyer;
-				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Allow this APP to use Bluetooth?";
-				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "Allow BT usage?";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Alow this APP use Bluetooth?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

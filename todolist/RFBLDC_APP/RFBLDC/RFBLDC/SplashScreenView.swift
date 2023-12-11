@@ -56,3 +56,5 @@ struct SplashScreenView_Previews: PreviewProvider {
         SplashScreenView()
     }
 }
+
+

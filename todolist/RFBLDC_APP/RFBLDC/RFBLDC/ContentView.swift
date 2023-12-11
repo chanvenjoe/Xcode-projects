@@ -7,13 +7,15 @@
 
 import SwiftUI
 import CoreBluetooth
+import UIKit
 
 
-class BluetoothViewModel: NSObject, ObservableObject {
+class BluetoothViewModel: NSObject, ObservableObject, CBPeripheralDelegate {
     private var centralManager: CBCentralManager?
     private var peripherals: [CBPeripheral] = []
     @Published var peripheralNames: [String] = []
     @Published var bluetoothState = ""
+    var BTmodule: CBPeripheral?
     
     override init(){
         super.init()
@@ -24,35 +26,96 @@ class BluetoothViewModel: NSObject, ObservableObject {
 extension BluetoothViewModel: CBCentralManagerDelegate{
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         switch central.state{
-        case .unknown:
+        case . unknown:
             break
-        case .resetting:break
-        case . unsupported:break
-        case . unauthorized:break
-        case . poweredOff: break
+        case . resetting:
+            bluetoothState = "Bluetooth Resetting"
+            break
+        case . unsupported:
+            bluetoothState = "Bluetooth Unsupported"
+            break
+        case . unauthorized:
+            bluetoothState = "Bluetooth Unauthorized"
+            break
+        case . poweredOff:
+            bluetoothState = "Bluetooth Off"
+            break
         case . poweredOn:
             self.centralManager? .scanForPeripherals(withServices: nil)
+            bluetoothState = "Bluetooth On"
             break
         @unknown default:
             break;
         }
         
-        bluetoothState = "\(central.state)"
-    
+            //        bluetoothState = "\(central.state)"
     }
+
     
-    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String:Any], rssi RSSI: NSNumber) {
-        print("\(peripheral)")
-        self.peripheralNames.append("\(peripheral)")
-    }
-    
-    func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
+    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String: Any], rssi RSSI: NSNumber) {
+        if let deviceName = advertisementData[CBAdvertisementDataLocalNameKey] as? String, deviceName.contains("ATK")
+        {
+    //        self.BTmodule = peripheral
+     //       self.peripherals.insert(peripheral, at: 1)
+    //        self.peripheralNames.insert((peripheral.name ?? "unnamed device"), at: 1)
+    //        centralManager?.connect(peripheral)
+            //self.centralManager?.stopScan()
+            //self.centralManager?.connect(peripheral, options: nil)
+        }
             if !peripherals.contains(peripheral) {
-            self.peripherals.append(peripheral)
-            self.peripheralNames.append((peripheral.name ?? "unnamed device"))
+            self.peripherals.insert(peripheral, at: 0)
+            self.peripheralNames.insert((peripheral.name ?? "unnamed device"), at: 0)
+            }
+             /*   if self.peripherals.count == 30{
+                    self.peripheralNames.removeAll();
+                    self.peripherals.removeAll();
+                }*/
+        else{
+           // if NSNumber
         }
 
     }
+    
+    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral)
+    {
+       
+        print("Connected")
+        peripheral.delegate = self
+        peripheral.discoverServices(nil)
+        centralManager?.stopScan()
+    }
+    
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
+        if let services = peripheral.services{
+            for service in services{
+                print("Discovered service: \(service.uuid.uuidString)")
+                peripheral.discoverCharacteristics(nil, for: service)
+                
+            }
+        }
+    }
+    
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
+        if let characteristics = service.characteristics{
+            for characteristic in characteristics {
+                print("Discovered characteristic: \(characteristic.uuid.uuidString)")
+                if characteristic.properties.contains(.read){
+                    peripheral.readValue(for: characteristic)
+                }
+            }
+        }
+    }
+    
+    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
+        if let data = characteristic.value{
+            print("Received data from BT device: \(data)")
+        }
+    }
+    
+    func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
+        print(error?.localizedDescription ?? "no error")
+    }
+    
     
 }
 
@@ -67,19 +130,34 @@ struct ContentView: View{
                         peripheral in
                         Text(peripheral)
                         }
-                    .navigationTitle("BT Device list:")
+                    .navigationTitle("Devices list:")
                 }
-            Text("status:\(self.bluetoothViewModel.bluetoothState)")
-  /*          Divider()
-            List{
-                ForEach(self.bluetoothViewModel.peripheralNames, id: \.self){
-                    item in Text("\(item)")
-                }
-            }*/
+            Text("Status:\(bluetoothViewModel.bluetoothState)")
+                .foregroundColor(.black)
             
-/*            Image("942 Image").resizable()
+            Image("942 Image").resizable()
                 .frame(width: 150, height: 150)
-            Text("942 Extream Go-Kart")*/
+            Text("942 Extream Go-Kart")
+            PowerButton()
+            HStack{
+                Text("Battery: ")
+                ZStack{
+                        RoundedRectangle(cornerRadius: 1)
+                        .foregroundColor(.green)
+                        .frame(width: 40, height: 15, alignment: .trailing)
+                        .padding(.trailing,30)
+                    VStack{
+                        BatteryView()
+                    }
+
+                }
+                .frame(width: 70, height:15)
+                .padding()
+            }
+            Text("Voltage:  V")
+                .frame(width: 180, height: 10, alignment: .leading)
+                
+            
         }
     }
 }
@@ -89,6 +167,40 @@ struct ContentView_Previews: PreviewProvider{
         ContentView()
     }
 }
+
+struct BatteryView : View{
+    var body: some View{
+            GeometryReader{ geo in
+            RoundedRectangle(cornerRadius:5)
+                    .stroke(lineWidth: 2)
+        }
+    }
+}
+
+struct PowerButton: View{
+    @State private var isPoweredOn = false
+    @State private var text:String = "Off"
+    
+    func changeText(_input: String)->String{
+        var newString:String
+        if(isPoweredOn)
+        {
+            newString = "On"
+        }
+        else{
+            newString = "Off"
+        }
+        return newString
+    }
+    
+    var body:some View{
+        Toggle("Power:\(changeText(_input: text))", isOn: $isPoweredOn).padding().font(.system(size: 20,weight: .bold))
+            .frame(width: 200, height: 10, alignment: .trailing)
+    }
+}
+
+
+//struct
 
 
 /*struct ContentView: View {
