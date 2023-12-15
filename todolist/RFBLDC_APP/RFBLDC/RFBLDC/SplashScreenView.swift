@@ -7,6 +7,23 @@
 
 import SwiftUI
 
+/*class ViewController: UIViewController{
+    @IBOutlet weak var dataTextView: UITextView!
+    var bleMAnager: BluetoothViewModel?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        bleMAnager = BluetoothViewModel()
+        bleMAnager?.onDataReceived = {
+            [weak self] dataString in DispatcthQueue.main.async{
+                self?.dataTextView.text +="\n\(dataString)"
+            }
+        }
+        
+    }
+}*/
+
+
 struct SplashScreenView: View {
     @State private var isActive = false
     @State private var size = 0.8
@@ -15,6 +32,7 @@ struct SplashScreenView: View {
     var body: some View {
         if isActive{
             ContentView()
+            
         }else {
             ZStack{
                 Color("Launch screen BG color")
@@ -56,5 +74,6 @@ struct SplashScreenView_Previews: PreviewProvider {
         SplashScreenView()
     }
 }
+
 
 
