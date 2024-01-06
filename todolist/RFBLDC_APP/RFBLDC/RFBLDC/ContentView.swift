@@ -10,6 +10,7 @@ import CoreBluetooth
 import UIKit
 
 let DeviceService: CBUUID = CBUUID(string: "0x9ECADC24-0EE5-A9E0-93F3-A3B50100406E")
+let DeviceWrite: CBUUID = CBUUID(string: "0x9ECADC24-0EE5-A9E0-93F3-A3B50200406E")
 let DeviceCharacteristic: CBUUID = CBUUID(string: "9ECADC24-0EE5-A9E0-93F3-A3B50300406E")
 
 enum ConnectionStatus: String{
@@ -20,13 +21,21 @@ enum ConnectionStatus: String{
     case error
 }
 
+var Speed = ""
+var Voltage = ""
+var GLBPeripheral : CBPeripheral?
+var GLBCharacteristic : CBCharacteristic!
+
 class BluetoothViewModel: NSObject, ObservableObject{
     private var centralManager: CBCentralManager?
     private var peripherals: [CBPeripheral] = []
     @Published var peripheralNames: [String] = []
     @Published var bluetoothState = ""
     @Published var PeripheralStatus: ConnectionStatus = .disconnected
-    @Published var Messagebox = "Blanck"
+    @Published var Messagebox = "1"
+    var sendCharacteristic: [CBCharacteristic]?
+//    @Published var Speedvalue = ""
+//    @Published var BatteryVoltage = ""
     var BTmodule: CBPeripheral?
     
     
@@ -34,6 +43,7 @@ class BluetoothViewModel: NSObject, ObservableObject{
         super.init()
         self.centralManager = CBCentralManager(delegate: self, queue: .main)
     }
+
 }
 
 extension BluetoothViewModel: CBCentralManagerDelegate{
@@ -126,46 +136,92 @@ extension BluetoothViewModel: CBPeripheralDelegate{
             }
         }
     }
-    
+        
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         for characteristic in service.characteristics ?? [] {
             peripheral.setNotifyValue(true, for: characteristic)
-            print("found characteristic, Ready for data")
+            print("found characteristic\(characteristic), Ready for data")
+//            let bytes:String = "0X13MOne"
+ //           let APPdata = Data(bytes : bytes, count: bytes.count)
+            if characteristic.properties.rawValue == 0x04{          // if the characteristic is the write service
+             //   peripheral.writeValue(APPdata, for: characteristic, type: CBCharacteristicWriteType.withoutResponse)
+             //   print("write sucess")
+                GLBPeripheral = peripheral
+                GLBCharacteristic = characteristic
+            }
         }
     }
-
+    
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         guard let data = characteristic.value else {
             print("No data received for \(characteristic.uuid.uuidString)")
             return
         }
+        /*        if let characteristic = peripheral.services?.first?.characteristics?.first{
+            peripheral.readValue(for: characteristic)
+        }*/
+        
         let bluetoothdata = data
-        if let stringvalue = String(data: bluetoothdata, encoding: .utf8)
+        if let stringvalue:String = String(data: bluetoothdata, encoding: .utf8)
         {
-            print("Received data from peripheral:\(stringvalue)")
-            Messagebox = "\(stringvalue)"
+            if stringvalue.contains("RPM")
+            {
+                Messagebox = "\(stringvalue)"
+                print("Received data:\(Messagebox)")
+                print("Voltage:\(Voltage)")
+                print("Speed:\(Speed)")
+                let str = stringvalue
+                let prefix = str.prefix(6)
+                let prefix1=str.suffix(7)
+                
+                Voltage = String(prefix)
+                Speed = String(prefix1)
+            }
+            
+        }
+
+    }
+    
+    func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
+        if(error != nil)
+        {
+            print("data sending failed:\(String(describing: error))")
         }
     }
-
 }
 
 struct ContentView: View{
     @StateObject private var bluetoothViewModel = BluetoothViewModel()
-    
     var body: some View{
         VStack{
-            ZStack{
+            VStack{ //This Vstack contains the BLE info and device list
                 NavigationView
                 {
-                    List(bluetoothViewModel.peripheralNames, id: \.self) {
-                        peripheral in
-                        Text(peripheral)
+                    VStack{
+                        
+                        List(bluetoothViewModel.peripheralNames, id: \.self) {
+                            peripheral in
+                            Text(peripheral)
+                        }
+                        .navigationTitle("Devices list:")
+                        
+                        NavigationLink(
+                            destination: Text(""),
+                            label:{
+                                Text("Information page->")
+                                    .foregroundColor(.white)
+                                    .fontWeight(.bold)
+                                    .background(Color.blue)
+                                    .cornerRadius(5)
+                                    .shadow(radius: 10)
+                                    .frame(width: 350, height: 15, alignment: .trailing)
+                            })
+ //                       .navigationBarTitle("Main", displayMode: .large)
                     }
-                    .navigationTitle("Devices list:")
                 }
-                Text("\(bluetoothViewModel.Messagebox)")
-                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                    .fontWeight(.heavy)
+  //              Text("\(bluetoothViewModel.Messagebox)")
+ //                   .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+     //               .fontWeight(.heavy)
             }
             Text("Status:\(bluetoothViewModel.bluetoothState)")
                 .foregroundColor(.black)
@@ -176,8 +232,11 @@ struct ContentView: View{
                 .frame(width: 150, height: 150)
             Text("942 Extream Go-Kart")
             PowerButton()
+                .padding(/*@START_MENU_TOKEN@*/EdgeInsets()/*@END_MENU_TOKEN@*/)
             HStack{
                 Text("Battery: ")
+                    .fontWeight(.heavy)
+                .frame(width: 90, height: 10, alignment: .leading)
                 ZStack{
                         RoundedRectangle(cornerRadius: 1)
                         .foregroundColor(.green)
@@ -191,10 +250,13 @@ struct ContentView: View{
                 .frame(width: 70, height:15)
                 .padding()
             }
-            Text("Voltage:  V")
-                .frame(width: 180, height: 10, alignment: .leading)
-            Text("Speed:")
-                .frame(width: 180, height: 10, alignment: .leading)
+            Text("Voltage:\(Voltage)")
+                .fontWeight(.heavy)
+                .frame(width: 200, height: 10, alignment: .leading)
+                //.frame(width: 380, height: 20, alignment: .leading)
+            Text("Speed   :\(Speed)")
+                .fontWeight(.heavy)
+                .frame(width: 200, height: 20, alignment: .leading)
         }
     }
 }
@@ -215,30 +277,43 @@ struct BatteryView : View{
 }
 
 struct PowerButton: View{
-    @State private var isPoweredOn = false
+    @State var isPoweredOn = false
     @State private var text:String = "Off"
-    
     func changeText(_input: String)->String{
-        var newString:String
+        var newString:String = "1234567"
+        var Motoroff: String = "0X13MOffe"
+        let Motoron:String = "0X13MOne"
+        var APPdata = Data(bytes : Motoron, count: Motoron.count)
+//        let APPdata1 = Data(bytes : bytes, count : Motoroff.count)
         if(isPoweredOn)
         {
             newString = "On"
+            APPdata = Data(bytes : Motoron, count: Motoron.count)
+            GLBPeripheral?.writeValue(APPdata, for: GLBCharacteristic, type: CBCharacteristicWriteType.withoutResponse)
+            print("Write to peripheral: \(APPdata)")
+            print("found characteristic\(GLBCharacteristic), Ready for data")
         }
-        else{
+        else
+        {
+            APPdata = Data(bytes : Motoroff, count: Motoroff.count)
             newString = "Off"
+            print("Write to peripheral: \(APPdata)")
+            GLBPeripheral?.writeValue(APPdata, for: GLBCharacteristic, type: CBCharacteristicWriteType.withoutResponse)
         }
         return newString
     }
     
     var body:some View{
-        Toggle("Power:\(changeText(_input: text))", isOn: $isPoweredOn).padding().font(.system(size: 20,weight: .bold))
-            .frame(width: 200, height: 10, alignment: .trailing)
+        Toggle("Power:\(changeText(_input: text))", isOn: $isPoweredOn)
+     //       .padding()
+            .font(.system(size: 20,weight: .bold))
+            .frame(width: 200, height: 10, alignment: .leading)
     }
 }
 
 
 //struct
-
+ 
 
 /*struct ContentView: View {
     var emoji = ["🚗","🚕","🚙","🏎","😃","😁","🤣","🚓","🚗","🚕","🚙","🏎","😃","😁","🤣","🏎"]
