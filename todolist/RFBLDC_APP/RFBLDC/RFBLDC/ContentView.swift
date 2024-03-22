@@ -8,6 +8,8 @@
 import SwiftUI
 import CoreBluetooth
 import UIKit
+import Charts
+import DGCharts
 
 let DeviceService: CBUUID = CBUUID(string: "0x9ECADC24-0EE5-A9E0-93F3-A3B50100406E")
 let DeviceWrite: CBUUID = CBUUID(string: "0x9ECADC24-0EE5-A9E0-93F3-A3B50200406E")
@@ -20,6 +22,15 @@ enum ConnectionStatus: String{
     case connecting
     case error
 }
+
+enum BTDeviceName: String{
+    case GoKart
+    case EWagon
+    case Drone
+    case Default
+}
+
+var BTName: BTDeviceName = .Default
 
 var Speed = ""
 var Voltage = ""
@@ -45,6 +56,19 @@ class BluetoothViewModel: NSObject, ObservableObject{
     }
 
 }
+
+/*Charts section*/
+class ViewController: UIViewController
+{
+    var lineChartViewL: LineChartView!
+    
+    var xAxis: XAxis!
+    var leftYAxis:YAxis!
+    var rightYAxis:YAxis!
+    var dataEntry: ChartDataEntry!
+    
+}
+
 
 extension BluetoothViewModel: CBCentralManagerDelegate{
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
@@ -81,6 +105,22 @@ extension BluetoothViewModel: CBCentralManagerDelegate{
             if(deviceName.contains("022191"))
             {
                 print("found")
+            }
+            if(deviceName.contains("942"))
+            {
+                BTName = .GoKart
+            }
+            else if(deviceName.contains("E-Wagon"))
+            {
+                BTName = .EWagon
+            }
+            else if(deviceName.contains("Drone"))
+            {
+                BTName = .Drone
+            }
+            else
+            {
+                BTName = .Default
             }
             self.BTmodule = peripheral
             self.centralManager?.stopScan()
@@ -206,7 +246,7 @@ struct ContentView: View{
                         .navigationTitle("Devices list:")
                         
                         NavigationLink(
-                            destination: Text(""),
+                            destination: Text("test"),
                             label:{
                                 Text("Information page->")
                                     .foregroundColor(.white)
@@ -216,54 +256,72 @@ struct ContentView: View{
                                     .shadow(radius: 10)
                                     .frame(width: 350, height: 15, alignment: .trailing)
                             })
- //                       .navigationBarTitle("Main", displayMode: .large)
+                        //                       .navigationBarTitle("Main", displayMode: .large)
                     }
                 }
-  //              Text("\(bluetoothViewModel.Messagebox)")
- //                   .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-     //               .fontWeight(.heavy)
+                //              Text("\(bluetoothViewModel.Messagebox)")
+                //                   .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                //               .fontWeight(.heavy)
             }
             Text("Status:\(bluetoothViewModel.bluetoothState)")
                 .foregroundColor(.black)
             Text("Device:\(bluetoothViewModel.PeripheralStatus.rawValue)")
-     //           .font(.title)
+            //           .font(.title)
                 .fontWeight(.heavy)
-            Image("942 Image").resizable()
-                .frame(width: 150, height: 150)
-            Text("942 Extream Go-Kart")
+            
+            switch BTName
+            {
+            case .GoKart:
+                Image("942 Image").resizable()
+                    .frame(width: 150, height: 150)
+                Text("942 Extream Go-Kart")
+                Text("Voltage:\(Voltage)")
+                    .fontWeight(.heavy)
+                    .frame(width: 200, height: 10, alignment: .leading)
+                //.frame(width: 380, height: 20, alignment: .leading)
+                Text("Speed   :\(Speed)")
+                    .fontWeight(.heavy)
+                    .frame(width: 200, height: 20, alignment: .leading)
+            case .EWagon:
+                //               Image("EWagon Image").resizable()
+                //                    .frame(width: 150, height: 150)
+                Text("Radioflyer E-Wagon")
+                //                break
+            case .Drone:
+                //               Image("Drone Image").resizable()
+                //                    .frame(width: 150, height: 150)
+                Text("Drone: KV.1")
+            case .Default:
+                Text("Unknown product")
+                
+            }
             PowerButton()
                 .padding(/*@START_MENU_TOKEN@*/EdgeInsets()/*@END_MENU_TOKEN@*/)
             HStack{
                 Text("Battery: ")
                     .fontWeight(.heavy)
-                .frame(width: 90, height: 10, alignment: .leading)
+                    .frame(width: 90, height: 10, alignment: .leading)
                 ZStack{
-                        RoundedRectangle(cornerRadius: 1)
+                    RoundedRectangle(cornerRadius: 1)
                         .foregroundColor(.green)
                         .frame(width: 40, height: 15, alignment: .trailing)
                         .padding(.trailing,30)
                     VStack{
                         BatteryView()
                     }
-
+                    
                 }
                 .frame(width: 70, height:15)
                 .padding()
             }
-            Text("Voltage:\(Voltage)")
-                .fontWeight(.heavy)
-                .frame(width: 200, height: 10, alignment: .leading)
-                //.frame(width: 380, height: 20, alignment: .leading)
-            Text("Speed   :\(Speed)")
-                .fontWeight(.heavy)
-                .frame(width: 200, height: 20, alignment: .leading)
+            Linechart()
         }
     }
 }
 
 struct ContentView_Previews: PreviewProvider{
     static var previews: some View{
-        ContentView()
+        SplashScreenView()
     }
 }
 
@@ -274,6 +332,7 @@ struct BatteryView : View{
                     .stroke(lineWidth: 2)
         }
     }
+    
 }
 
 struct PowerButton: View{
@@ -281,7 +340,7 @@ struct PowerButton: View{
     @State private var text:String = "Off"
     func changeText(_input: String)->String{
         var newString:String = "1234567"
-        var Motoroff: String = "0X13MOffe"
+        let Motoroff: String = "0X13MOffe"
         let Motoron:String = "0X13MOne"
         var APPdata = Data(bytes : Motoron, count: Motoron.count)
 //        let APPdata1 = Data(bytes : bytes, count : Motoroff.count)
@@ -312,7 +371,9 @@ struct PowerButton: View{
 }
 
 
-//struct
+
+
+
  
 
 /*struct ContentView: View {
