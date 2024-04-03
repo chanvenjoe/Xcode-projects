@@ -14,8 +14,8 @@
             filePath = "RFBLDC/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
             landmarkName = "centralManager(_:didDiscover:advertisementData:rssi:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -30,8 +30,8 @@
             filePath = "RFBLDC/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
             landmarkName = "centralManager(_:didDiscover:advertisementData:rssi:)"
             landmarkType = "7">
             <Locations>
@@ -65,6 +65,21 @@
                   endingLineNumber = "68"
                   offsetFromSymbolStart = "596">
                </Location>
+               <Location
+                  uuid = "C4575578-71FE-4494-8B74-1E80CCA8D651 - 149d298cf6895603"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RFBLDC.BluetoothViewModel.centralManager(_: __C.CBCentralManager, didDiscover: __C.CBPeripheral, advertisementData: Swift.Dictionary&lt;Swift.String, Any&gt;, rssi: __C.NSNumber) -&gt; ()"
+                  moduleName = "RFBLDC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chuanfengchou/Desktop/Projects/Xcode-projects/todolist/RFBLDC_APP/RFBLDC/RFBLDC/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "92"
+                  endingLineNumber = "92"
+                  offsetFromSymbolStart = "596">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -78,8 +93,8 @@
             filePath = "RFBLDC/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
             landmarkName = "peripheral(_:didDiscoverServices:)"
             landmarkType = "7">
             <Locations>
@@ -126,10 +141,87 @@
             filePath = "RFBLDC/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "195"
-            endingLineNumber = "195"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
             landmarkName = "peripheral(_:didUpdateValueFor:error:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "56F7FE60-CF99-4415-9CB1-5A386D0E787D - af3308e49e9ae45"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RFBLDC.BluetoothViewModel.peripheral(_: __C.CBPeripheral, didUpdateValueFor: __C.CBCharacteristic, error: Swift.Optional&lt;Swift.Error&gt;) -&gt; ()"
+                  moduleName = "RFBLDC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chuanfengchou/Desktop/Projects/Xcode-projects/todolist/RFBLDC_APP/RFBLDC/RFBLDC/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "182"
+                  endingLineNumber = "182"
+                  offsetFromSymbolStart = "288">
+               </Location>
+               <Location
+                  uuid = "56F7FE60-CF99-4415-9CB1-5A386D0E787D - af3308e49e9ae45"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RFBLDC.BluetoothViewModel.peripheral(_: __C.CBPeripheral, didUpdateValueFor: __C.CBCharacteristic, error: Swift.Optional&lt;Swift.Error&gt;) -&gt; ()"
+                  moduleName = "RFBLDC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chuanfengchou/Desktop/Projects/Xcode-projects/todolist/RFBLDC_APP/RFBLDC/RFBLDC/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "182"
+                  endingLineNumber = "182"
+                  offsetFromSymbolStart = "400">
+               </Location>
+               <Location
+                  uuid = "56F7FE60-CF99-4415-9CB1-5A386D0E787D - af3308e49e9ae45"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RFBLDC.BluetoothViewModel.peripheral(_: __C.CBPeripheral, didUpdateValueFor: __C.CBCharacteristic, error: Swift.Optional&lt;Swift.Error&gt;) -&gt; ()"
+                  moduleName = "RFBLDC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chuanfengchou/Desktop/Projects/Xcode-projects/todolist/RFBLDC_APP/RFBLDC/RFBLDC/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "182"
+                  endingLineNumber = "182"
+                  offsetFromSymbolStart = "396">
+               </Location>
+               <Location
+                  uuid = "56F7FE60-CF99-4415-9CB1-5A386D0E787D - af3308e49e9ae45"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RFBLDC.BluetoothViewModel.peripheral(_: __C.CBPeripheral, didUpdateValueFor: __C.CBCharacteristic, error: Swift.Optional&lt;Swift.Error&gt;) -&gt; ()"
+                  moduleName = "RFBLDC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chuanfengchou/Desktop/Projects/Xcode-projects/todolist/RFBLDC_APP/RFBLDC/RFBLDC/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "182"
+                  endingLineNumber = "182"
+                  offsetFromSymbolStart = "412">
+               </Location>
+               <Location
+                  uuid = "56F7FE60-CF99-4415-9CB1-5A386D0E787D - af3308e49e9ae45"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RFBLDC.BluetoothViewModel.peripheral(_: __C.CBPeripheral, didUpdateValueFor: __C.CBCharacteristic, error: Swift.Optional&lt;Swift.Error&gt;) -&gt; ()"
+                  moduleName = "RFBLDC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chuanfengchou/Desktop/Projects/Xcode-projects/todolist/RFBLDC_APP/RFBLDC/RFBLDC/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "182"
+                  endingLineNumber = "182"
+                  offsetFromSymbolStart = "404">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -142,8 +234,8 @@
             filePath = "RFBLDC/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
             landmarkName = "peripheral(_:didDiscoverCharacteristicsFor:error:)"
             landmarkType = "7">
             <Locations>
@@ -177,6 +269,21 @@
                   endingLineNumber = "132"
                   offsetFromSymbolStart = "108">
                </Location>
+               <Location
+                  uuid = "4C3BB914-8018-4FC4-84F0-FA712A5034CE - 95d4559c955042af"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RFBLDC.BluetoothViewModel.peripheral(_: __C.CBPeripheral, didDiscoverCharacteristicsFor: __C.CBService, error: Swift.Optional&lt;Swift.Error&gt;) -&gt; ()"
+                  moduleName = "RFBLDC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chuanfengchou/Desktop/Projects/Xcode-projects/todolist/RFBLDC_APP/RFBLDC/RFBLDC/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "167"
+                  endingLineNumber = "167"
+                  offsetFromSymbolStart = "108">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -190,8 +297,8 @@
             filePath = "RFBLDC/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "204"
-            endingLineNumber = "204"
+            startingLineNumber = "221"
+            endingLineNumber = "221"
             landmarkName = "peripheral(_:didUpdateValueFor:error:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -206,8 +313,8 @@
             filePath = "RFBLDC/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "225"
-            endingLineNumber = "225"
+            startingLineNumber = "264"
+            endingLineNumber = "264"
             landmarkName = "peripheral(_:didWriteValueFor:error:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -222,8 +329,8 @@
             filePath = "RFBLDC/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "341"
-            endingLineNumber = "341"
+            startingLineNumber = "377"
+            endingLineNumber = "377"
             landmarkName = "changeText(_input:)"
             landmarkType = "7">
             <Locations>
@@ -270,8 +377,8 @@
             filePath = "RFBLDC/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "347"
-            endingLineNumber = "347"
+            startingLineNumber = "383"
+            endingLineNumber = "383"
             landmarkName = "changeText(_input:)"
             landmarkType = "7">
             <Locations>
@@ -318,10 +425,57 @@
             filePath = "RFBLDC/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "196"
-            endingLineNumber = "196"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
             landmarkName = "peripheral(_:didUpdateValueFor:error:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "BA76537C-7CB6-472C-84E9-B3DEE9A5BDFE - af3308e49e9ae62"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RFBLDC.BluetoothViewModel.peripheral(_: __C.CBPeripheral, didUpdateValueFor: __C.CBCharacteristic, error: Swift.Optional&lt;Swift.Error&gt;) -&gt; ()"
+                  moduleName = "RFBLDC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chuanfengchou/Desktop/Projects/Xcode-projects/todolist/RFBLDC_APP/RFBLDC/RFBLDC/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "183"
+                  endingLineNumber = "183"
+                  offsetFromSymbolStart = "304">
+               </Location>
+               <Location
+                  uuid = "BA76537C-7CB6-472C-84E9-B3DEE9A5BDFE - af3308e49e9ae62"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RFBLDC.BluetoothViewModel.peripheral(_: __C.CBPeripheral, didUpdateValueFor: __C.CBCharacteristic, error: Swift.Optional&lt;Swift.Error&gt;) -&gt; ()"
+                  moduleName = "RFBLDC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chuanfengchou/Desktop/Projects/Xcode-projects/todolist/RFBLDC_APP/RFBLDC/RFBLDC/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "183"
+                  endingLineNumber = "183"
+                  offsetFromSymbolStart = "312">
+               </Location>
+               <Location
+                  uuid = "BA76537C-7CB6-472C-84E9-B3DEE9A5BDFE - af3308e49e9a9a0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RFBLDC.BluetoothViewModel.peripheral(_: __C.CBPeripheral, didUpdateValueFor: __C.CBCharacteristic, error: Swift.Optional&lt;Swift.Error&gt;) -&gt; ()"
+                  moduleName = "RFBLDC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chuanfengchou/Desktop/Projects/Xcode-projects/todolist/RFBLDC_APP/RFBLDC/RFBLDC/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "185"
+                  endingLineNumber = "185"
+                  offsetFromSymbolStart = "392">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -334,8 +488,8 @@
             filePath = "RFBLDC/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "207"
-            endingLineNumber = "207"
+            startingLineNumber = "226"
+            endingLineNumber = "226"
             landmarkName = "peripheral(_:didUpdateValueFor:error:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -344,16 +498,793 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "D273B51D-A09A-4774-9177-B46E93BA3105"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RFBLDC/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "234"
+            endingLineNumber = "234"
+            landmarkName = "peripheral(_:didUpdateValueFor:error:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D273B51D-A09A-4774-9177-B46E93BA3105 - af3308e49e9ab1e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RFBLDC.BluetoothViewModel.peripheral(_: __C.CBPeripheral, didUpdateValueFor: __C.CBCharacteristic, error: Swift.Optional&lt;Swift.Error&gt;) -&gt; ()"
+                  moduleName = "RFBLDC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chuanfengchou/Desktop/Projects/Xcode-projects/todolist/RFBLDC_APP/RFBLDC/RFBLDC/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "203"
+                  endingLineNumber = "203"
+                  offsetFromSymbolStart = "2324">
+               </Location>
+               <Location
+                  uuid = "D273B51D-A09A-4774-9177-B46E93BA3105 - af3308e49e9abf1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RFBLDC.BluetoothViewModel.peripheral(_: __C.CBPeripheral, didUpdateValueFor: __C.CBCharacteristic, error: Swift.Optional&lt;Swift.Error&gt;) -&gt; ()"
+                  moduleName = "RFBLDC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chuanfengchou/Desktop/Projects/Xcode-projects/todolist/RFBLDC_APP/RFBLDC/RFBLDC/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "202"
+                  endingLineNumber = "202"
+                  offsetFromSymbolStart = "2344">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2DC2204D-F158-4EC7-AB1F-0AFE22E82DC4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RFBLDC/DataSource.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A7E7F137-22AB-4AAE-B311-894B79FDA5BF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RFBLDC/DataSource.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7ECC6241-A45F-4FFF-B47D-CE37C3AAA057"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RFBLDC/DataSource.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "StartRealTimeUpdates()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "7ECC6241-A45F-4FFF-B47D-CE37C3AAA057 - 63af91489a0a3c1e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RFBLDC.Linechart.StartRealTimeUpdates() -&gt; ()"
+                  moduleName = "RFBLDC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chuanfengchou/Desktop/Projects/Xcode-projects/todolist/RFBLDC_APP/RFBLDC/RFBLDC/DataSource.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "88"
+                  endingLineNumber = "88"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  uuid = "7ECC6241-A45F-4FFF-B47D-CE37C3AAA057 - 49aef91d2874f8e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (__C.NSTimer) -&gt; () in RFBLDC.Linechart.StartRealTimeUpdates() -&gt; ()"
+                  moduleName = "RFBLDC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chuanfengchou/Desktop/Projects/Xcode-projects/todolist/RFBLDC_APP/RFBLDC/RFBLDC/DataSource.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "88"
+                  endingLineNumber = "88"
+                  offsetFromSymbolStart = "44">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0751CBE7-DD75-4503-A859-5757A538B630"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RFBLDC/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "390"
+            endingLineNumber = "390"
+            landmarkName = "changeText(_input:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0751CBE7-DD75-4503-A859-5757A538B630 - 2a3fdbd83a9ee0fd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RFBLDC.PowerButton.changeText(_input: Swift.String) -&gt; Swift.String"
+                  moduleName = "RFBLDC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chuanfengchou/Desktop/Projects/Xcode-projects/todolist/RFBLDC_APP/RFBLDC/RFBLDC/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "354"
+                  endingLineNumber = "354"
+                  offsetFromSymbolStart = "2868">
+               </Location>
+               <Location
+                  uuid = "0751CBE7-DD75-4503-A859-5757A538B630 - 2a3fdbd83a9ee0dc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RFBLDC.PowerButton.changeText(_input: Swift.String) -&gt; Swift.String"
+                  moduleName = "RFBLDC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chuanfengchou/Desktop/Projects/Xcode-projects/todolist/RFBLDC_APP/RFBLDC/RFBLDC/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "353"
+                  endingLineNumber = "353"
+                  offsetFromSymbolStart = "2816">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FB867461-DB1C-49C3-9A3C-5A240CE5DBCE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RFBLDC/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "centralManager(_:didDiscover:advertisementData:rssi:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "98094895-AC94-4704-B0DA-B24CBB2DED5E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RFBLDC/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
+            landmarkName = "peripheral(_:didDiscoverCharacteristicsFor:error:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1F0EF241-DCA8-436C-B3E7-CED0E7089EDF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RFBLDC/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "224"
+            endingLineNumber = "224"
+            landmarkName = "peripheral(_:didUpdateValueFor:error:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "1F0EF241-DCA8-436C-B3E7-CED0E7089EDF - af3308e49e9a8a8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RFBLDC.BluetoothViewModel.peripheral(_: __C.CBPeripheral, didUpdateValueFor: __C.CBCharacteristic, error: Swift.Optional&lt;Swift.Error&gt;) -&gt; ()"
+                  moduleName = "RFBLDC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chuanfengchou/Desktop/Projects/Xcode-projects/todolist/RFBLDC_APP/RFBLDC/RFBLDC/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "193"
+                  endingLineNumber = "193"
+                  offsetFromSymbolStart = "628">
+               </Location>
+               <Location
+                  uuid = "1F0EF241-DCA8-436C-B3E7-CED0E7089EDF - af3308e49e9a8a8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RFBLDC.BluetoothViewModel.peripheral(_: __C.CBPeripheral, didUpdateValueFor: __C.CBCharacteristic, error: Swift.Optional&lt;Swift.Error&gt;) -&gt; ()"
+                  moduleName = "RFBLDC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chuanfengchou/Desktop/Projects/Xcode-projects/todolist/RFBLDC_APP/RFBLDC/RFBLDC/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "193"
+                  endingLineNumber = "193"
+                  offsetFromSymbolStart = "632">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5900988E-BAA5-47BD-A2FE-24B7E952C98D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RFBLDC/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "243"
+            endingLineNumber = "243"
+            landmarkName = "peripheral(_:didUpdateValueFor:error:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "5900988E-BAA5-47BD-A2FE-24B7E952C98D - af3308e49e9aa44"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RFBLDC.BluetoothViewModel.peripheral(_: __C.CBPeripheral, didUpdateValueFor: __C.CBCharacteristic, error: Swift.Optional&lt;Swift.Error&gt;) -&gt; ()"
+                  moduleName = "RFBLDC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chuanfengchou/Desktop/Projects/Xcode-projects/todolist/RFBLDC_APP/RFBLDC/RFBLDC/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "213"
+                  endingLineNumber = "213"
+                  offsetFromSymbolStart = "3828">
+               </Location>
+               <Location
+                  uuid = "5900988E-BAA5-47BD-A2FE-24B7E952C98D - af3308e49e9aa44"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RFBLDC.BluetoothViewModel.peripheral(_: __C.CBPeripheral, didUpdateValueFor: __C.CBCharacteristic, error: Swift.Optional&lt;Swift.Error&gt;) -&gt; ()"
+                  moduleName = "RFBLDC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chuanfengchou/Desktop/Projects/Xcode-projects/todolist/RFBLDC_APP/RFBLDC/RFBLDC/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "213"
+                  endingLineNumber = "213"
+                  offsetFromSymbolStart = "3868">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "48DB284A-CBAB-40E7-B981-C1D5387F63B7"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RFBLDC/DataSource.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "LinechartUpdate(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D0BCE16C-E78B-4F59-BD75-8629E919FEB3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RFBLDC/DataSource.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FDAED856-ADE3-4E3E-B291-EEA54D617732"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RFBLDC/DataSource.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3D4B9F7D-8D99-4512-AD12-11A35E0B79E1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RFBLDC/DataSource.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
+            landmarkName = "LinechartUpdate(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "3D4B9F7D-8D99-4512-AD12-11A35E0B79E1 - beefa66a3a11409"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RFBLDC.Linechart.LinechartUpdate(RFBLDC.PullForceData) -&gt; ()"
+                  moduleName = "RFBLDC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chuanfengchou/Desktop/Projects/Xcode-projects/todolist/RFBLDC_APP/RFBLDC/RFBLDC/DataSource.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "111"
+                  endingLineNumber = "111"
+                  offsetFromSymbolStart = "1448">
+               </Location>
+               <Location
+                  uuid = "3D4B9F7D-8D99-4512-AD12-11A35E0B79E1 - beefa66a3a11409"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RFBLDC.Linechart.LinechartUpdate(RFBLDC.PullForceData) -&gt; ()"
+                  moduleName = "RFBLDC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chuanfengchou/Desktop/Projects/Xcode-projects/todolist/RFBLDC_APP/RFBLDC/RFBLDC/DataSource.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "111"
+                  endingLineNumber = "111"
+                  offsetFromSymbolStart = "1304">
+               </Location>
+               <Location
+                  uuid = "3D4B9F7D-8D99-4512-AD12-11A35E0B79E1 - beefa66a3a114cb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RFBLDC.Linechart.LinechartUpdate(RFBLDC.PullForceData) -&gt; ()"
+                  moduleName = "RFBLDC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chuanfengchou/Desktop/Projects/Xcode-projects/todolist/RFBLDC_APP/RFBLDC/RFBLDC/DataSource.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "113"
+                  endingLineNumber = "113"
+                  offsetFromSymbolStart = "880">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "62A8C7A5-BDAA-43D9-BBF0-8C6440F8C940"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RFBLDC/DataSource.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "timerAction()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "62A8C7A5-BDAA-43D9-BBF0-8C6440F8C940 - 9d8f97ccf8b7aa4d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RFBLDC.Linechart.timerAction() -&gt; ()"
+                  moduleName = "RFBLDC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chuanfengchou/Desktop/Projects/Xcode-projects/todolist/RFBLDC_APP/RFBLDC/RFBLDC/DataSource.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "92"
+                  endingLineNumber = "92"
+                  offsetFromSymbolStart = "1384">
+               </Location>
+               <Location
+                  uuid = "62A8C7A5-BDAA-43D9-BBF0-8C6440F8C940 - 9d8f97ccf8b7aa4d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RFBLDC.Linechart.timerAction() -&gt; ()"
+                  moduleName = "RFBLDC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chuanfengchou/Desktop/Projects/Xcode-projects/todolist/RFBLDC_APP/RFBLDC/RFBLDC/DataSource.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "92"
+                  endingLineNumber = "92"
+                  offsetFromSymbolStart = "1556">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "516E0F78-74E0-4E39-A6CE-9F14DCE92D61"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RFBLDC/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "247"
+            endingLineNumber = "247"
+            landmarkName = "peripheral(_:didUpdateValueFor:error:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "65496FC0-CFE0-49FC-A120-C51B959E1BF5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RFBLDC/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "241"
+            endingLineNumber = "241"
+            landmarkName = "peripheral(_:didUpdateValueFor:error:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "65496FC0-CFE0-49FC-A120-C51B959E1BF5 - af3308e49e9aa06"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RFBLDC.BluetoothViewModel.peripheral(_: __C.CBPeripheral, didUpdateValueFor: __C.CBCharacteristic, error: Swift.Optional&lt;Swift.Error&gt;) -&gt; ()"
+                  moduleName = "RFBLDC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chuanfengchou/Desktop/Projects/Xcode-projects/todolist/RFBLDC_APP/RFBLDC/RFBLDC/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "211"
+                  endingLineNumber = "211"
+                  offsetFromSymbolStart = "3228">
+               </Location>
+               <Location
+                  uuid = "65496FC0-CFE0-49FC-A120-C51B959E1BF5 - af3308e49e9aa06"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RFBLDC.BluetoothViewModel.peripheral(_: __C.CBPeripheral, didUpdateValueFor: __C.CBCharacteristic, error: Swift.Optional&lt;Swift.Error&gt;) -&gt; ()"
+                  moduleName = "RFBLDC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chuanfengchou/Desktop/Projects/Xcode-projects/todolist/RFBLDC_APP/RFBLDC/RFBLDC/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "211"
+                  endingLineNumber = "211"
+                  offsetFromSymbolStart = "3264">
+               </Location>
+               <Location
+                  uuid = "65496FC0-CFE0-49FC-A120-C51B959E1BF5 - af3308e49e9aa06"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RFBLDC.BluetoothViewModel.peripheral(_: __C.CBPeripheral, didUpdateValueFor: __C.CBCharacteristic, error: Swift.Optional&lt;Swift.Error&gt;) -&gt; ()"
+                  moduleName = "RFBLDC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chuanfengchou/Desktop/Projects/Xcode-projects/todolist/RFBLDC_APP/RFBLDC/RFBLDC/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "211"
+                  endingLineNumber = "211"
+                  offsetFromSymbolStart = "3268">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3644AFC3-D485-4135-AEAA-A810BE26EDD7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RFBLDC/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "239"
+            endingLineNumber = "239"
+            landmarkName = "peripheral(_:didUpdateValueFor:error:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "3644AFC3-D485-4135-AEAA-A810BE26EDD7 - af3308e49e9b4c8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RFBLDC.BluetoothViewModel.peripheral(_: __C.CBPeripheral, didUpdateValueFor: __C.CBCharacteristic, error: Swift.Optional&lt;Swift.Error&gt;) -&gt; ()"
+                  moduleName = "RFBLDC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chuanfengchou/Desktop/Projects/Xcode-projects/todolist/RFBLDC_APP/RFBLDC/RFBLDC/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "225"
+                  endingLineNumber = "225"
+                  offsetFromSymbolStart = "4616">
+               </Location>
+               <Location
+                  uuid = "3644AFC3-D485-4135-AEAA-A810BE26EDD7 - af3308e49e9b1c3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RFBLDC.BluetoothViewModel.peripheral(_: __C.CBPeripheral, didUpdateValueFor: __C.CBCharacteristic, error: Swift.Optional&lt;Swift.Error&gt;) -&gt; ()"
+                  moduleName = "RFBLDC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chuanfengchou/Desktop/Projects/Xcode-projects/todolist/RFBLDC_APP/RFBLDC/RFBLDC/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "248"
+                  endingLineNumber = "248"
+                  offsetFromSymbolStart = "2388">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9940D50A-3C61-4324-B85F-801DC3DFF212"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RFBLDC/DataSource.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "timerAction()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A2A783DB-CB0A-46EE-99AB-EA6BD8F27CDD"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RFBLDC/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "240"
+            endingLineNumber = "240"
+            landmarkName = "peripheral(_:didUpdateValueFor:error:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "283B88DE-C7C8-4EE8-B5EF-586C6B8DD7C2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RFBLDC/DataSource.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "timerAction()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6F46C22A-2610-4904-BB40-0C31F8A42442"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RFBLDC/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "246"
+            endingLineNumber = "246"
+            landmarkName = "peripheral(_:didUpdateValueFor:error:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B188BE2C-3ACF-4C52-AD50-5AD6701CEAB5"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RFBLDC/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "215"
-            endingLineNumber = "215"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
             landmarkName = "peripheral(_:didUpdateValueFor:error:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B188BE2C-3ACF-4C52-AD50-5AD6701CEAB5 - af3308e49e9ab1e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RFBLDC.BluetoothViewModel.peripheral(_: __C.CBPeripheral, didUpdateValueFor: __C.CBCharacteristic, error: Swift.Optional&lt;Swift.Error&gt;) -&gt; ()"
+                  moduleName = "RFBLDC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chuanfengchou/Desktop/Projects/Xcode-projects/todolist/RFBLDC_APP/RFBLDC/RFBLDC/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "203"
+                  endingLineNumber = "203"
+                  offsetFromSymbolStart = "3012">
+               </Location>
+               <Location
+                  uuid = "B188BE2C-3ACF-4C52-AD50-5AD6701CEAB5 - af3308e49e9ab1e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RFBLDC.BluetoothViewModel.peripheral(_: __C.CBPeripheral, didUpdateValueFor: __C.CBCharacteristic, error: Swift.Optional&lt;Swift.Error&gt;) -&gt; ()"
+                  moduleName = "RFBLDC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chuanfengchou/Desktop/Projects/Xcode-projects/todolist/RFBLDC_APP/RFBLDC/RFBLDC/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "203"
+                  endingLineNumber = "203"
+                  offsetFromSymbolStart = "2900">
+               </Location>
+               <Location
+                  uuid = "B188BE2C-3ACF-4C52-AD50-5AD6701CEAB5 - af3308e49e9ab1e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RFBLDC.BluetoothViewModel.peripheral(_: __C.CBPeripheral, didUpdateValueFor: __C.CBCharacteristic, error: Swift.Optional&lt;Swift.Error&gt;) -&gt; ()"
+                  moduleName = "RFBLDC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chuanfengchou/Desktop/Projects/Xcode-projects/todolist/RFBLDC_APP/RFBLDC/RFBLDC/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "203"
+                  endingLineNumber = "203"
+                  offsetFromSymbolStart = "2896">
+               </Location>
+               <Location
+                  uuid = "B188BE2C-3ACF-4C52-AD50-5AD6701CEAB5 - af3308e49e9ab1e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RFBLDC.BluetoothViewModel.peripheral(_: __C.CBPeripheral, didUpdateValueFor: __C.CBCharacteristic, error: Swift.Optional&lt;Swift.Error&gt;) -&gt; ()"
+                  moduleName = "RFBLDC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chuanfengchou/Desktop/Projects/Xcode-projects/todolist/RFBLDC_APP/RFBLDC/RFBLDC/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "203"
+                  endingLineNumber = "203"
+                  offsetFromSymbolStart = "2652">
+               </Location>
+               <Location
+                  uuid = "B188BE2C-3ACF-4C52-AD50-5AD6701CEAB5 - af3308e49e9ab3f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RFBLDC.BluetoothViewModel.peripheral(_: __C.CBPeripheral, didUpdateValueFor: __C.CBCharacteristic, error: Swift.Optional&lt;Swift.Error&gt;) -&gt; ()"
+                  moduleName = "RFBLDC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chuanfengchou/Desktop/Projects/Xcode-projects/todolist/RFBLDC_APP/RFBLDC/RFBLDC/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "204"
+                  endingLineNumber = "204"
+                  offsetFromSymbolStart = "2276">
+               </Location>
+               <Location
+                  uuid = "B188BE2C-3ACF-4C52-AD50-5AD6701CEAB5 - af3308e49e9ab3f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RFBLDC.BluetoothViewModel.peripheral(_: __C.CBPeripheral, didUpdateValueFor: __C.CBCharacteristic, error: Swift.Optional&lt;Swift.Error&gt;) -&gt; ()"
+                  moduleName = "RFBLDC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chuanfengchou/Desktop/Projects/Xcode-projects/todolist/RFBLDC_APP/RFBLDC/RFBLDC/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "204"
+                  endingLineNumber = "204"
+                  offsetFromSymbolStart = "2284">
+               </Location>
+               <Location
+                  uuid = "B188BE2C-3ACF-4C52-AD50-5AD6701CEAB5 - af3308e49e9ab3f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RFBLDC.BluetoothViewModel.peripheral(_: __C.CBPeripheral, didUpdateValueFor: __C.CBCharacteristic, error: Swift.Optional&lt;Swift.Error&gt;) -&gt; ()"
+                  moduleName = "RFBLDC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chuanfengchou/Desktop/Projects/Xcode-projects/todolist/RFBLDC_APP/RFBLDC/RFBLDC/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "204"
+                  endingLineNumber = "204"
+                  offsetFromSymbolStart = "2260">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CA9A37C7-2C1B-4EAF-9083-4D54195B07BD"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RFBLDC/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "275"
+            endingLineNumber = "275"
+            landmarkName = "body"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

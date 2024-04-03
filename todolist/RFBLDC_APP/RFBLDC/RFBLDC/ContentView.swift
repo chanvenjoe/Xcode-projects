@@ -9,7 +9,6 @@ import SwiftUI
 import CoreBluetooth
 import UIKit
 import Charts
-import DGCharts
 
 let DeviceService: CBUUID = CBUUID(string: "0x9ECADC24-0EE5-A9E0-93F3-A3B50100406E")
 let DeviceWrite: CBUUID = CBUUID(string: "0x9ECADC24-0EE5-A9E0-93F3-A3B50200406E")
@@ -37,6 +36,8 @@ var Voltage = ""
 var GLBPeripheral : CBPeripheral?
 var GLBCharacteristic : CBCharacteristic!
 
+var GramValue : Int  = 0
+
 class BluetoothViewModel: NSObject, ObservableObject{
     private var centralManager: CBCentralManager?
     private var peripherals: [CBPeripheral] = []
@@ -55,18 +56,6 @@ class BluetoothViewModel: NSObject, ObservableObject{
         self.centralManager = CBCentralManager(delegate: self, queue: .main)
     }
 
-}
-
-/*Charts section*/
-class ViewController: UIViewController
-{
-    var lineChartViewL: LineChartView!
-    
-    var xAxis: XAxis!
-    var leftYAxis:YAxis!
-    var rightYAxis:YAxis!
-    var dataEntry: ChartDataEntry!
-    
 }
 
 
@@ -95,13 +84,11 @@ extension BluetoothViewModel: CBCentralManagerDelegate{
         @unknown default:
             break;
         }
-        
-        //        bluetoothState = "\(central.state)"
     }
     
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String: Any], rssi RSSI: NSNumber) {
-        if let deviceName = advertisementData [CBAdvertisementDataLocalNameKey] as? String, deviceName.contains("KEVIN BLE"){
+        if let deviceName = advertisementData [CBAdvertisementDataLocalNameKey] as? String, deviceName.contains("E-WAGON")||deviceName.contains("KEVIN BLE"){
             if(deviceName.contains("022191"))
             {
                 print("found")
@@ -110,7 +97,7 @@ extension BluetoothViewModel: CBCentralManagerDelegate{
             {
                 BTName = .GoKart
             }
-            else if(deviceName.contains("E-Wagon"))
+            else if(deviceName.contains("E-WAGON")||(deviceName.contains("KEVIN BLE")))
             {
                 BTName = .EWagon
             }
@@ -193,17 +180,49 @@ extension BluetoothViewModel: CBPeripheralDelegate{
     }
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
+//        var buffer: Data = Data()
+//        let LinechartInstance = Linechart()
         guard let data = characteristic.value else {
             print("No data received for \(characteristic.uuid.uuidString)")
             return
         }
-        /*        if let characteristic = peripheral.services?.first?.characteristics?.first{
-            peripheral.readValue(for: characteristic)
-        }*/
-        
+     
         let bluetoothdata = data
-        if let stringvalue:String = String(data: bluetoothdata, encoding: .utf8)
+        if let bufferString:String = String(data: bluetoothdata, encoding: .utf8)
         {
+            //        buffer.append(data)
+                if let prefixRange = bufferString.range(of: "0x14")
+                {
+                    let messagrString0 = bufferString[prefixRange.upperBound...]
+                    //              messagrString0.removeSubrange(..<prefixRange.upperBound)
+                    
+                    if let sepratorRange = messagrString0.range(of: "\n"){
+                        
+                        let messageString = messagrString0[..<sepratorRange.lowerBound]
+                        //                    messageString.removeSubrange(..<sepratorRange.upperBound)
+                        
+                        print("Received: \(messageString)")
+                        if let temp = Int(messageString)
+                        {
+                            GramValue = temp
+                        }
+                        else
+                        {
+                            print("Unrapping error")
+                        }
+                    }
+            }
+        }
+        else
+        {
+            print("failed to convert string")
+        }
+        
+//        let bluetoothdata = data
+        
+        /*if let stringvalue:String = String(data: bluetoothdata, encoding: .utf8)
+        {
+            print("\(stringvalue)")
             if stringvalue.contains("RPM")
             {
                 Messagebox = "\(stringvalue)"
@@ -217,8 +236,28 @@ extension BluetoothViewModel: CBPeripheralDelegate{
                 Voltage = String(prefix)
                 Speed = String(prefix1)
             }
-            
-        }
+            else if stringvalue.contains("0x31 0x14")
+            {
+                Messagebox = ("\(stringvalue)")
+                print("Received data:\(Messagebox)")
+                let str = stringvalue
+                let gramIndex = str.index(str.startIndex, offsetBy: 10)
+                let gramEndIdex = str.index(str.endIndex, offsetBy: -4)
+                GramValue = String(str[gramIndex..<gramEndIdex])
+                if let newDataPoint:Int = Int(GramValue)
+                {
+                    if LinechartPageFlag{
+//                        LinechartInstance.LinechartUpdate(PullForceData(time: counter.timercnt, force: newDataPoint))
+                    }
+                }
+                else 
+                {
+                    print("data invalid")
+                }
+
+            }
+        }*/
+        
 
     }
     
@@ -232,6 +271,7 @@ extension BluetoothViewModel: CBPeripheralDelegate{
 
 struct ContentView: View{
     @StateObject private var bluetoothViewModel = BluetoothViewModel()
+    
     var body: some View{
         VStack{
             VStack{ //This Vstack contains the BLE info and device list
@@ -242,11 +282,12 @@ struct ContentView: View{
                         List(bluetoothViewModel.peripheralNames, id: \.self) {
                             peripheral in
                             Text(peripheral)
+                          //  Text(s)
                         }
                         .navigationTitle("Devices list:")
                         
                         NavigationLink(
-                            destination: Text("test"),
+                            destination: Linechart(),
                             label:{
                                 Text("Information page->")
                                     .foregroundColor(.white)
@@ -283,8 +324,8 @@ struct ContentView: View{
                     .fontWeight(.heavy)
                     .frame(width: 200, height: 20, alignment: .leading)
             case .EWagon:
-                //               Image("EWagon Image").resizable()
-                //                    .frame(width: 150, height: 150)
+                    Image("EWagon Image").resizable()
+                    .frame(width: 150, height: 150)
                 Text("Radioflyer E-Wagon")
                 //                break
             case .Drone:
@@ -314,16 +355,10 @@ struct ContentView: View{
                 .frame(width: 70, height:15)
                 .padding()
             }
-            Linechart()
         }
     }
 }
 
-struct ContentView_Previews: PreviewProvider{
-    static var previews: some View{
-        SplashScreenView()
-    }
-}
 
 struct BatteryView : View{
     var body: some View{
@@ -338,6 +373,7 @@ struct BatteryView : View{
 struct PowerButton: View{
     @State var isPoweredOn = false
     @State private var text:String = "Off"
+
     func changeText(_input: String)->String{
         var newString:String = "1234567"
         let Motoroff: String = "0X13MOffe"
@@ -351,6 +387,7 @@ struct PowerButton: View{
             GLBPeripheral?.writeValue(APPdata, for: GLBCharacteristic, type: CBCharacteristicWriteType.withoutResponse)
             print("Write to peripheral: \(APPdata)")
             print("found characteristic\(GLBCharacteristic), Ready for data")
+ //           StartRealTimeUpdates()//timerAction()
         }
         else
         {
@@ -358,6 +395,7 @@ struct PowerButton: View{
             newString = "Off"
             print("Write to peripheral: \(APPdata)")
             GLBPeripheral?.writeValue(APPdata, for: GLBCharacteristic, type: CBCharacteristicWriteType.withoutResponse)
+ //           timer.invalidate()
         }
         return newString
     }
@@ -370,7 +408,11 @@ struct PowerButton: View{
     }
 }
 
-
+struct ContentView_Previews: PreviewProvider{
+    static var previews: some View{
+        SplashScreenView()
+    }
+}
 
 
 
