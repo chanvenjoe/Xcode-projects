@@ -22,52 +22,86 @@ struct counter{
 
 var LinechartPageFlag:Bool = false
 
-/*var LineChartData : [PullForceData] = [
-    .init(time: 0, force: 0),
-    .init(time: 1, force: 0),
-    .init(time: 3, force: 0)
-]*/
-
 
 
 
 struct Linechart: View{
     @State private var LineChartData: [PullForceData] = []
+    @State private var PWMChartData: [PullForceData] = []
+    
     @State private var timer: Timer?
     
     var dataPoints: [PullForceData] = []//every time APP receive data from BT, update data
+    var pwmPoints: [PullForceData] = []
     let maxValue = 100
     
     var body: some View{
         if #available(iOS 16.0, *) {
             GroupBox("E-Wagon Pull force data"){
-                Chart{
-                    ForEach(LineChartData){
-                        AreaMark(
-                            x:.value("Time", $0.time),//using $0, it will auto detect the type of enclosed data and no in needed
-                            yStart: .value("min", 200),
-                            yEnd: .value("max", 2000)
-                 //           y:.value("Force", $0.force)
+                VStack{
+                    Chart{
+                        ForEach(LineChartData){
+                            AreaMark(
+                                x:.value("Time", $0.time),//using $0, it will auto detect the type of enclosed data and no in needed
+                                yStart: .value("min", 500),
+                                yEnd: .value("max", 1000)
+                                //           y:.value("Force", $0.force)
+                                
+                            )
+                            .opacity(0.3)
+                            .foregroundStyle(.green)
+                            LineMark(
+                                x:.value("Time", $0.time),//using $0, it will auto detect the type of enclosed data and no in needed
+                                y:.value("Force", $0.force)
+                                
+                            )
+                            //.interpolationMethod(.catmullRom)
+                            //                        .foregroundStyle(.green)
+                            //                        .foregroundStyle(by: .value("name", $0.time))
+                            //                        .symbol(by: .value("name", $0.time))
+                            //                        .cornerRadius(5)
                             
-                        )
-                        .opacity(0.3)
-                        .foregroundStyle(.blue)
-                        LineMark(
-                            x:.value("Time", $0.time),//using $0, it will auto detect the type of enclosed data and no in needed
-                            y:.value("Force", $0.force)
-                            
-                        )
-                        .foregroundStyle(.gray)
-                        
+                        }
+                        .interpolationMethod(.catmullRom)
                     }
-                    .interpolationMethod(.catmullRom)
+                    .frame(width: 300, height:200)
+                    .chartXScale(domain: 0...1000)
+                    .chartLegend(.visible)
+                    .chartXAxisLabel("Time:50ms", position: .bottom)
+                    .chartYAxisLabel("Force:Gram", position: .top)
+                    .chartYAxis{
+                        AxisMarks(preset: .extended, position:.leading)
+                    }
+                    
+                    ZStack{
+                        Chart{
+                            ForEach(PWMChartData) {
+                                LineMark(
+                                    x:.value("Time", $0.time),//using $0, it will auto detect the type of enclosed data and no in needed
+                                    y:.value("Force", $0.force)
+                                )
+                                .interpolationMethod(.catmullRom)
+                               // .foregroundStyle(.green)
+ //                               .foregroundStyle(by: .value("name", $0.time))
+//                                .symbol(by: .value("name", $0.time))
+                                .cornerRadius(5)
+                            }
+                            .interpolationMethod(.catmullRom)
+                        }
+                        .frame(width: 300, height:100)
+                        .chartXScale(domain: 0...1000)
+                        .chartYScale(domain: 0...100)
+                        .chartLegend(.visible)
+                        .chartXAxisLabel("Time:50ms", position: .bottom)
+                        .chartYAxisLabel("PWM", position: .top)
+                        .chartYAxis{
+                            AxisMarks(preset: .extended, position:.leading)
+                        }
+                        Text("PWM:\(PWMValue)")
+                            .frame(width: 300, height: 100, alignment:.topTrailing)
+                    
+                    }
                 }
-                .frame(width: 300, height:300)
-                .chartXScale(domain: 0...1000)
-                .chartLegend(.visible)
-                .chartXAxisLabel("Time:50ms", position: .bottomTrailing)
-                .chartYAxisLabel("Force:Gram")
-               // .frame
             }
             .foregroundColor(.black)
             .fontWeight(.heavy)
@@ -81,6 +115,7 @@ struct Linechart: View{
             {
                 counter.timercnt = 0
                 LineChartData.removeAll()
+                PWMChartData.removeAll()
                 StopRealTimeUpdates()
             }
         }
@@ -96,19 +131,20 @@ struct Linechart: View{
             timerAction()
         }
     }
+    
     func timerAction(){
- //       let newDataPoint = Int.random(in: 0...1000)
         counter.timercnt+=1//unexpectedly found nil
- //       LineChartData.append(PullForceData(time: counter.timercnt, force: newDataPoint))
-        LineChartData.append(PullForceData(time: counter.timercnt, force: Int(GramValue) ?? 0))
+
+        LineChartData.append(PullForceData(time: counter.timercnt, force: Int(GramValue) ))
+        
+        PWMChartData.append(PullForceData(time: counter.timercnt, force: Int(PWMValue) ))
 
         if counter.timercnt >= 1000
         {
             LineChartData.removeAll()
+            PWMChartData.removeAll()
             counter.timercnt = 0
         }
- //       print("timer fired")
- //       print(LineChartData)
     }
     
     func StopRealTimeUpdates(){
@@ -116,20 +152,13 @@ struct Linechart: View{
     }
     
     func LinechartUpdate(_ newDataPoint: PullForceData){
-
-        
         counter.timercnt+=1//unexpectedly found nil
-        
 //        LineChartData.append(newDataPoint)
-        
         if counter.timercnt >= 100
         {
             LineChartData.removeAll()
             counter.timercnt = 0
         }
-                             
-   //     print("New point:\(newDataPoint)")
-     //  print(LineChartData)//still empty， try print in timer
     }
 }
 

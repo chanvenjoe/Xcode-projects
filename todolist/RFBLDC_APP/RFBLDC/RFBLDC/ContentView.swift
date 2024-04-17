@@ -31,29 +31,45 @@ enum BTDeviceName: String{
 
 var BTName: BTDeviceName = .Default
 
-var Speed = ""
-var Voltage = ""
+
+
 var GLBPeripheral : CBPeripheral?
 var GLBCharacteristic : CBCharacteristic!
+var GlobalVoltage = "000"
+var GlobalSpeed = "000"
+var GlobalMessage = "000"
+var GramValue : Int  = 100
+var PWMValue  : Int = 10
 
-var GramValue : Int  = 0
+/*class GlobalData: ObservableObject {
+    @Published var Speed:String = GlobalSpeed
+    @Published var Voltage:String = GlobalVoltage
+    @Published var Message:String = GlobalMessage
+}*/
 
 class BluetoothViewModel: NSObject, ObservableObject{
     private var centralManager: CBCentralManager?
+//    @state var BTobservedData : GlobalData?
+    @Published var Speed:String = ""
+    @Published var Voltage:String = ""
+    @Published var Message:String = ""
+    
     private var peripherals: [CBPeripheral] = []
     @Published var peripheralNames: [String] = []
     @Published var bluetoothState = ""
     @Published var PeripheralStatus: ConnectionStatus = .disconnected
-    @Published var Messagebox = "1"
+//    @Published var Messagebox = "1"
     var sendCharacteristic: [CBCharacteristic]?
 //    @Published var Speedvalue = ""
-//    @Published var BatteryVoltage = ""
     var BTmodule: CBPeripheral?
     
     
     override init(){
         super.init()
         self.centralManager = CBCentralManager(delegate: self, queue: .main)
+//        super.init(){
+
+ //       }
     }
 
 }
@@ -113,6 +129,8 @@ extension BluetoothViewModel: CBCentralManagerDelegate{
             self.centralManager?.stopScan()
             self.centralManager?.connect(peripheral,options: nil)
             PeripheralStatus = .connecting
+            self.peripheralNames.removeAll();
+            self.peripherals.removeAll();
             print("Found BLE")
         }
         if !peripherals.contains(peripheral)
@@ -180,8 +198,7 @@ extension BluetoothViewModel: CBPeripheralDelegate{
     }
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-//        var buffer: Data = Data()
-//        let LinechartInstance = Linechart()
+
         guard let data = characteristic.value else {
             print("No data received for \(characteristic.uuid.uuidString)")
             return
@@ -194,13 +211,8 @@ extension BluetoothViewModel: CBPeripheralDelegate{
                 if let prefixRange = bufferString.range(of: "0x14")
                 {
                     let messagrString0 = bufferString[prefixRange.upperBound...]
-                    //              messagrString0.removeSubrange(..<prefixRange.upperBound)
-                    
                     if let sepratorRange = messagrString0.range(of: "\n"){
-                        
                         let messageString = messagrString0[..<sepratorRange.lowerBound]
-                        //                    messageString.removeSubrange(..<sepratorRange.upperBound)
-                        
                         print("Received: \(messageString)")
                         if let temp = Int(messageString)
                         {
@@ -212,53 +224,50 @@ extension BluetoothViewModel: CBPeripheralDelegate{
                         }
                     }
             }
+            else if let prefixRange = bufferString.range(of: "PWM")
+            {
+                let messagrString0 = bufferString[prefixRange.upperBound...]
+                if let sepratorRange = messagrString0.range(of: "\n"){
+                    let messageString = messagrString0[..<sepratorRange.lowerBound]
+                    print("PWM: \(messageString)")
+                    if let temp = Int(messageString)
+                    {
+                        PWMValue = temp
+                    }
+                    else
+                    {
+                        print("Unrapping error")
+                    }
+                }
+            }
+            else if let prefixRange = bufferString.range(of: "VBat")
+            {
+                let messagrString0 = bufferString[prefixRange.upperBound...]
+                if let sepratorRange = messagrString0.range(of: "\n"){
+                    let messageString = messagrString0[..<sepratorRange.lowerBound]
+                    print("BAT: \(messageString)")
+                    Voltage = String(messageString)
+                }
+            }
+            else if let prefixRange = bufferString.range(of: "0x13")
+            {
+                let messagrString0 = bufferString[prefixRange.upperBound...]
+                if let sepratorRange = messagrString0.range(of: "\n"){
+                    
+                    let messageString = messagrString0[..<sepratorRange.lowerBound]
+                    print("MessageBox: \(messageString)")
+                    GlobalMessage = String(messageString)
+                    Message = String(messageString)
+//                    self.BTobservedData.Message = GlobalMessage
+//                    BTobservedData.Message = GlobalMessage
+                    
+                }
+            }
         }
         else
         {
             print("failed to convert string")
         }
-        
-//        let bluetoothdata = data
-        
-        /*if let stringvalue:String = String(data: bluetoothdata, encoding: .utf8)
-        {
-            print("\(stringvalue)")
-            if stringvalue.contains("RPM")
-            {
-                Messagebox = "\(stringvalue)"
-                print("Received data:\(Messagebox)")
-                print("Voltage:\(Voltage)")
-                print("Speed:\(Speed)")
-                let str = stringvalue
-                let prefix = str.prefix(6)
-                let prefix1=str.suffix(7)
-                
-                Voltage = String(prefix)
-                Speed = String(prefix1)
-            }
-            else if stringvalue.contains("0x31 0x14")
-            {
-                Messagebox = ("\(stringvalue)")
-                print("Received data:\(Messagebox)")
-                let str = stringvalue
-                let gramIndex = str.index(str.startIndex, offsetBy: 10)
-                let gramEndIdex = str.index(str.endIndex, offsetBy: -4)
-                GramValue = String(str[gramIndex..<gramEndIdex])
-                if let newDataPoint:Int = Int(GramValue)
-                {
-                    if LinechartPageFlag{
-//                        LinechartInstance.LinechartUpdate(PullForceData(time: counter.timercnt, force: newDataPoint))
-                    }
-                }
-                else 
-                {
-                    print("data invalid")
-                }
-
-            }
-        }*/
-        
-
     }
     
     func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
@@ -271,23 +280,23 @@ extension BluetoothViewModel: CBPeripheralDelegate{
 
 struct ContentView: View{
     @StateObject private var bluetoothViewModel = BluetoothViewModel()
-    
     var body: some View{
         VStack{
             VStack{ //This Vstack contains the BLE info and device list
                 NavigationView
                 {
                     VStack{
-                        
                         List(bluetoothViewModel.peripheralNames, id: \.self) {
                             peripheral in
                             Text(peripheral)
-                          //  Text(s)
                         }
+                        .foregroundColor(.gray)
                         .navigationTitle("Devices list:")
-                        
+                        Text("Message:\(bluetoothViewModel.Message)")
+                            .frame(width: 380, height: 30,alignment: .leading)
+                            .font(.headline)
                         NavigationLink(
-                            destination: Linechart(),
+                            destination: Linechart().frame(width: 380, height: 500, alignment: .topLeading),
                             label:{
                                 Text("Information page->")
                                     .foregroundColor(.white)
@@ -295,38 +304,28 @@ struct ContentView: View{
                                     .background(Color.blue)
                                     .cornerRadius(5)
                                     .shadow(radius: 10)
-                                    .frame(width: 350, height: 15, alignment: .trailing)
                             })
-                        //                       .navigationBarTitle("Main", displayMode: .large)
+                        .frame(width: 380, height: 20, alignment: .trailing)
                     }
                 }
-                //              Text("\(bluetoothViewModel.Messagebox)")
-                //                   .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                //               .fontWeight(.heavy)
             }
             Text("Status:\(bluetoothViewModel.bluetoothState)")
                 .foregroundColor(.black)
             Text("Device:\(bluetoothViewModel.PeripheralStatus.rawValue)")
-            //           .font(.title)
                 .fontWeight(.heavy)
-            
+/***********************************************************************************/
             switch BTName
             {
             case .GoKart:
                 Image("942 Image").resizable()
                     .frame(width: 150, height: 150)
                 Text("942 Extream Go-Kart")
-                Text("Voltage:\(Voltage)")
-                    .fontWeight(.heavy)
-                    .frame(width: 200, height: 10, alignment: .leading)
-                //.frame(width: 380, height: 20, alignment: .leading)
-                Text("Speed   :\(Speed)")
-                    .fontWeight(.heavy)
-                    .frame(width: 200, height: 20, alignment: .leading)
             case .EWagon:
                     Image("EWagon Image").resizable()
                     .frame(width: 150, height: 150)
-                Text("Radioflyer E-Wagon")
+                VStack{
+                    Text("Radioflyer E-Wagon")
+                }
                 //                break
             case .Drone:
                 //               Image("Drone Image").resizable()
@@ -354,7 +353,10 @@ struct ContentView: View{
                 }
                 .frame(width: 70, height:15)
                 .padding()
+                Text("voltage:\(bluetoothViewModel.Voltage)")
             }
+            PIDSlideBAr()
+
         }
     }
 }
@@ -370,9 +372,70 @@ struct BatteryView : View{
     
 }
 
+struct PIDSlideBAr : View{
+    @State private var KP: Float = 0.01
+    @State private var KI: Float = 0.01
+    @State private var KD: Float = 0.01
+    @State private var CFbutton = false
+    
+    var body: some View{
+        HStack{
+            VStack{
+                Slider(value:$KP, in: 0...1, step: 0.01)
+                    .padding()
+                    .frame(width: 200, height: 30)
+                Slider(value:$KI, in: 0...1, step: 0.01)
+                    .padding()
+                    .frame(width: 200, height: 30)
+                Slider(value:$KD, in: 0...1, step: 0.01)
+                    .padding()
+                    .frame(width: 200, height: 30)
+                
+            }
+            VStack{
+                Text("KP: \(String(format: "%.2f",KP))")
+                    .frame(width: 70, height: 30, alignment: .leading)
+                Text("KI: \(String(format: "%.2f",KI))")
+                    .frame(width: 70, height: 30, alignment: .leading)
+                Text("KD: \(String(format: "%.2f",KD))")
+                    .frame(width: 70, height: 30, alignment: .leading)
+            }
+            VStack{
+                Button(action:{
+                    CFbutton.toggle()
+                }){
+                    Text("Set")
+                        .frame(width: 90)
+                }
+                .font((.system(size: 30, weight: .bold)))
+                .background(.gray)
+                .opacity(0.5)
+                .cornerRadius(10)
+                .frame(width: 90, alignment: .leading)
+                Text(CFbutton ? "SET OK" : "SET FAILED")
+                .foregroundColor(.secondary)
+                .frame(width: 90, alignment: .leading)
+            }
+        }
+        .frame(width: 380, alignment: .leading)
+    }
+}
+
+/*struct TextView: View {
+
+    var body: some View {
+        Text("Message:\(observedData.Message)")
+        Text("Voltage:\(observedData.Voltage)")
+            .fontWeight(.heavy)
+            .frame(width: 200, height: 10, alignment: .leading)
+        
+    }
+}*/
+
 struct PowerButton: View{
     @State var isPoweredOn = false
     @State private var text:String = "Off"
+    @State var MessageBox : String = GlobalMessage
 
     func changeText(_input: String)->String{
         var newString:String = "1234567"
@@ -387,7 +450,6 @@ struct PowerButton: View{
             GLBPeripheral?.writeValue(APPdata, for: GLBCharacteristic, type: CBCharacteristicWriteType.withoutResponse)
             print("Write to peripheral: \(APPdata)")
             print("found characteristic\(GLBCharacteristic), Ready for data")
- //           StartRealTimeUpdates()//timerAction()
         }
         else
         {
@@ -395,7 +457,6 @@ struct PowerButton: View{
             newString = "Off"
             print("Write to peripheral: \(APPdata)")
             GLBPeripheral?.writeValue(APPdata, for: GLBCharacteristic, type: CBCharacteristicWriteType.withoutResponse)
- //           timer.invalidate()
         }
         return newString
     }
@@ -406,11 +467,13 @@ struct PowerButton: View{
             .font(.system(size: 20,weight: .bold))
             .frame(width: 200, height: 10, alignment: .leading)
     }
+    
 }
 
 struct ContentView_Previews: PreviewProvider{
     static var previews: some View{
-        SplashScreenView()
+//        SplashScreenView()
+        ContentView()
     }
 }
 
