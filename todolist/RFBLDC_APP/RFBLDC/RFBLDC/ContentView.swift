@@ -41,6 +41,11 @@ var GlobalMessage = "000"
 var GramValue : Int  = 100
 var PWMValue  : Int = 10
 
+class PID_Parameter_Class: ObservableObject{
+    @Published var KP: Float = 0.11
+    @Published var KI: Float = 0.1
+    @Published var KD: Float = 0.1
+}
 /*class GlobalData: ObservableObject {
     @Published var Speed:String = GlobalSpeed
     @Published var Voltage:String = GlobalVoltage
@@ -58,11 +63,9 @@ class BluetoothViewModel: NSObject, ObservableObject{
     @Published var peripheralNames: [String] = []
     @Published var bluetoothState = ""
     @Published var PeripheralStatus: ConnectionStatus = .disconnected
-//    @Published var Messagebox = "1"
     var sendCharacteristic: [CBCharacteristic]?
-//    @Published var Speedvalue = ""
     var BTmodule: CBPeripheral?
-    
+    @Published var PID_Parameters = PID_Parameter_Class()
     
     override init(){
         super.init()
@@ -203,7 +206,6 @@ extension BluetoothViewModel: CBPeripheralDelegate{
             print("No data received for \(characteristic.uuid.uuidString)")
             return
         }
-     
         let bluetoothdata = data
         if let bufferString:String = String(data: bluetoothdata, encoding: .utf8)
         {
@@ -249,20 +251,74 @@ extension BluetoothViewModel: CBPeripheralDelegate{
                     Voltage = String(messageString)
                 }
             }
-            else if let prefixRange = bufferString.range(of: "0x13")
+            else if let prefixRange = bufferString.range(of: "0X31")
             {
                 let messagrString0 = bufferString[prefixRange.upperBound...]
                 if let sepratorRange = messagrString0.range(of: "\n"){
                     
                     let messageString = messagrString0[..<sepratorRange.lowerBound]
                     print("MessageBox: \(messageString)")
-                    GlobalMessage = String(messageString)
+ //                   GlobalMessage = String(messageString)
                     Message = String(messageString)
-//                    self.BTobservedData.Message = GlobalMessage
-//                    BTobservedData.Message = GlobalMessage
-                    
                 }
             }
+            if let prefixRange = bufferString.range(of: "0X31P")
+            {
+                let messagrString0 = bufferString[prefixRange.upperBound...]
+                if let sepratorRange = messagrString0.range(of: "\n"){
+                    
+                    let messageString = messagrString0[..<sepratorRange.lowerBound]
+                    print("KP: \(messageString)")
+                    if let temp = Float(messageString)
+                    {
+                        PID_Parameters.KP = temp
+                        print("KP from Controller:\(self.PID_Parameters.KP)")
+                    }
+                    else
+                    {
+                        print("Unrapping error")
+                    }
+                }
+            }
+            else if let prefixRange = bufferString.range(of: "0X31I")
+            {
+                let messagrString0 = bufferString[prefixRange.upperBound...]
+                if let sepratorRange = messagrString0.range(of: "\n"){
+                    
+                    let messageString = messagrString0[..<sepratorRange.lowerBound]
+                    print("MessageBox: \(messageString)")
+                    if let temp = Float(messageString)
+                    {
+                        PID_Parameters.KI = temp
+                        print("KI from Controller:\(self.PID_Parameters.KI)")
+                    }
+                    else
+                    {
+                        print("Unrapping error")
+                    }
+                }
+            }
+            else if let prefixRange = bufferString.range(of: "0X31D")
+            {
+                let messagrString0 = bufferString[prefixRange.upperBound...]
+                if let sepratorRange = messagrString0.range(of: "\n"){
+                    
+                    let messageString = messagrString0[..<sepratorRange.lowerBound]
+                    print("MessageBox: \(messageString)")
+                    if let temp = Float(messageString)
+                    {
+                        PID_Parameters.KD = temp
+                        print("KD from Controller:\(self.PID_Parameters.KD)")
+                        let confirmBit = Data(bytes : "E", count: "E".count)
+                        GLBPeripheral?.writeValue(confirmBit, for: GLBCharacteristic, type: CBCharacteristicWriteType.withoutResponse)//for PID calibration confirm
+                    }
+                    else
+                    {
+                        print("Unrapping error")
+                    }
+                }
+            }
+            
         }
         else
         {
@@ -292,13 +348,35 @@ struct ContentView: View{
                         }
                         .foregroundColor(.gray)
                         .navigationTitle("Devices list:")
+                      //  ImageView()
+                        switch BTName
+                        {
+                        case .GoKart:
+                            Image("942 Image").resizable()
+                                .frame(width: 150, height: 150)
+                            Text("942 Extream Go-Kart")
+                        case .EWagon:
+                                Image("EWagon Image").resizable()
+                                .frame(width: 150, height: 150)
+                            VStack{
+                                Text("Radioflyer E-Wagon")
+                            }
+                            //                break
+                        case .Drone:
+                            //               Image("Drone Image").resizable()
+                            //                    .frame(width: 150, height: 150)
+                            Text("Drone: KV.1")
+                        case .Default:
+                            Text("Unknown product")
+                            
+                        }
                         Text("Message:\(bluetoothViewModel.Message)")
                             .frame(width: 380, height: 30,alignment: .leading)
                             .font(.headline)
                         NavigationLink(
                             destination: Linechart().frame(width: 380, height: 500, alignment: .topLeading),
                             label:{
-                                Text("Information page->")
+                                Text("Force Chart->")
                                     .foregroundColor(.white)
                                     .fontWeight(.bold)
                                     .background(Color.blue)
@@ -310,52 +388,30 @@ struct ContentView: View{
                 }
             }
             Text("Status:\(bluetoothViewModel.bluetoothState)")
-                .foregroundColor(.black)
+                .frame(width: 380,alignment: .leading)
             Text("Device:\(bluetoothViewModel.PeripheralStatus.rawValue)")
-                .fontWeight(.heavy)
+                .frame(width: 380,alignment: .leading)
+  //              .fontWeight(.heavy)
 /***********************************************************************************/
-            switch BTName
-            {
-            case .GoKart:
-                Image("942 Image").resizable()
-                    .frame(width: 150, height: 150)
-                Text("942 Extream Go-Kart")
-            case .EWagon:
-                    Image("EWagon Image").resizable()
-                    .frame(width: 150, height: 150)
-                VStack{
-                    Text("Radioflyer E-Wagon")
-                }
-                //                break
-            case .Drone:
-                //               Image("Drone Image").resizable()
-                //                    .frame(width: 150, height: 150)
-                Text("Drone: KV.1")
-            case .Default:
-                Text("Unknown product")
-                
-            }
-            PowerButton()
-                .padding(/*@START_MENU_TOKEN@*/EdgeInsets()/*@END_MENU_TOKEN@*/)
             HStack{
                 Text("Battery: ")
                     .fontWeight(.heavy)
-                    .frame(width: 90, height: 10, alignment: .leading)
+  //                  .frame(width: 90, height: 10, alignment: .leading)
                 ZStack{
                     RoundedRectangle(cornerRadius: 1)
                         .foregroundColor(.green)
-                        .frame(width: 40, height: 15, alignment: .trailing)
+                        .frame(width: 90, height: 15, alignment: .trailing)
                         .padding(.trailing,30)
-                    VStack{
-                        BatteryView()
-                    }
-                    
+                    BatteryView()
                 }
                 .frame(width: 70, height:15)
                 .padding()
                 Text("voltage:\(bluetoothViewModel.Voltage)")
+                    .padding()
             }
-            PIDSlideBAr()
+            .frame(width: 380, height: 20, alignment: .leading)
+            PowerButton()
+            PIDSlideBar()
 
         }
     }
@@ -367,37 +423,69 @@ struct BatteryView : View{
             GeometryReader{ geo in
             RoundedRectangle(cornerRadius:5)
                     .stroke(lineWidth: 2)
+                    .frame(width: 100)
+                
         }
     }
     
 }
 
-struct PIDSlideBAr : View{
-    @State private var KP: Float = 0.01
-    @State private var KI: Float = 0.01
-    @State private var KD: Float = 0.01
+struct ImageView: View{
+    var body: some View{
+        switch BTName
+        {
+        case .GoKart:
+            Image("942 Image").resizable()
+                .frame(width: 150, height: 150)
+            Text("942 Extream Go-Kart")
+        case .EWagon:
+                Image("EWagon Image").resizable()
+                .frame(width: 150, height: 150)
+            VStack{
+                Text("Radioflyer E-Wagon")
+            }
+            //                break
+        case .Drone:
+            //               Image("Drone Image").resizable()
+            //                    .frame(width: 150, height: 150)
+            Text("Drone: KV.1")
+        case .Default:
+            Text("Unknown product")
+            
+        }
+    }
+}
+
+struct PIDSlideBar : View{
+    @StateObject private var bluetoothViewModel = BluetoothViewModel()
+ /*   @State var KP: Float = BluetoothViewModel().PID_Parameters.KP
+    @State var KI: Float = BluetoothViewModel().PID_Parameters.KI
+    @State var KD: Float = BluetoothViewModel().PID_Parameters.KD*/
     @State private var CFbutton = false
+    var presurfix: String = "["
+
     
+
     var body: some View{
         HStack{
             VStack{
-                Slider(value:$KP, in: 0...1, step: 0.01)
+                Slider(value:$bluetoothViewModel.PID_Parameters.KP, in: 0...1, step: 0.01)
                     .padding()
                     .frame(width: 200, height: 30)
-                Slider(value:$KI, in: 0...1, step: 0.01)
+                Slider(value:$bluetoothViewModel.PID_Parameters.KI, in: 0...1, step: 0.01)
                     .padding()
                     .frame(width: 200, height: 30)
-                Slider(value:$KD, in: 0...1, step: 0.01)
+                Slider(value:$bluetoothViewModel.PID_Parameters.KD, in: 0...1, step: 0.01)
                     .padding()
                     .frame(width: 200, height: 30)
                 
             }
             VStack{
-                Text("KP: \(String(format: "%.2f",KP))")
+                Text("KP: \(String(format: "%.2f",bluetoothViewModel.PID_Parameters.KP))")
                     .frame(width: 70, height: 30, alignment: .leading)
-                Text("KI: \(String(format: "%.2f",KI))")
+                Text("KI: \(String(format: "%.2f",bluetoothViewModel.PID_Parameters.KI))")
                     .frame(width: 70, height: 30, alignment: .leading)
-                Text("KD: \(String(format: "%.2f",KD))")
+                Text("KD: \(String(format: "%.2f",bluetoothViewModel.PID_Parameters.KD))")
                     .frame(width: 70, height: 30, alignment: .leading)
             }
             VStack{
@@ -406,12 +494,37 @@ struct PIDSlideBAr : View{
                 }){
                     Text("Set")
                         .frame(width: 90)
+                        .onTapGesture {
+                         var   APPdata = Data(bytes : presurfix , count: presurfix.count)
+    
+                            var floatToString = String(bluetoothViewModel.PID_Parameters.KP)
+                            APPdata = Data(bytes: floatToString, count: floatToString.count)
+                            GLBPeripheral?.writeValue(APPdata, for: GLBCharacteristic, type: CBCharacteristicWriteType.withoutResponse)
+                            APPdata = Data(bytes : "P", count: "P".count)
+                            GLBPeripheral?.writeValue(APPdata, for: GLBCharacteristic, type: CBCharacteristicWriteType.withoutResponse)
+                            
+                            floatToString = String(bluetoothViewModel.PID_Parameters.KI)
+                            APPdata = Data(bytes: floatToString, count: floatToString.count)
+                            GLBPeripheral?.writeValue(APPdata, for: GLBCharacteristic, type: CBCharacteristicWriteType.withoutResponse)
+                            APPdata = Data(bytes : "I", count: "I".count)
+                            GLBPeripheral?.writeValue(APPdata, for: GLBCharacteristic, type: CBCharacteristicWriteType.withoutResponse)
+                            
+                            floatToString = String(bluetoothViewModel.PID_Parameters.KD)
+                            APPdata = Data(bytes: floatToString, count: floatToString.count)
+                            GLBPeripheral?.writeValue(APPdata, for: GLBCharacteristic, type: CBCharacteristicWriteType.withoutResponse)
+                            
+                            APPdata = Data(bytes : "D", count: "D".count)
+                            GLBPeripheral?.writeValue(APPdata, for: GLBCharacteristic, type: CBCharacteristicWriteType.withoutResponse)
+                            print("Send: \(APPdata)")
+                            //print("PID sent:\(KP) \(KI) \(KD)")
+                        }
                 }
                 .font((.system(size: 30, weight: .bold)))
                 .background(.gray)
                 .opacity(0.5)
                 .cornerRadius(10)
                 .frame(width: 90, alignment: .leading)
+                
                 Text(CFbutton ? "SET OK" : "SET FAILED")
                 .foregroundColor(.secondary)
                 .frame(width: 90, alignment: .leading)
@@ -420,17 +533,6 @@ struct PIDSlideBAr : View{
         .frame(width: 380, alignment: .leading)
     }
 }
-
-/*struct TextView: View {
-
-    var body: some View {
-        Text("Message:\(observedData.Message)")
-        Text("Voltage:\(observedData.Voltage)")
-            .fontWeight(.heavy)
-            .frame(width: 200, height: 10, alignment: .leading)
-        
-    }
-}*/
 
 struct PowerButton: View{
     @State var isPoweredOn = false
@@ -442,7 +544,6 @@ struct PowerButton: View{
         let Motoroff: String = "0X13MOffe"
         let Motoron:String = "0X13MOne"
         var APPdata = Data(bytes : Motoron, count: Motoron.count)
-//        let APPdata1 = Data(bytes : bytes, count : Motoroff.count)
         if(isPoweredOn)
         {
             newString = "On"
@@ -463,9 +564,8 @@ struct PowerButton: View{
     
     var body:some View{
         Toggle("Power:\(changeText(_input: text))", isOn: $isPoweredOn)
-     //       .padding()
             .font(.system(size: 20,weight: .bold))
-            .frame(width: 200, height: 10, alignment: .leading)
+            .frame(width: 380)
     }
     
 }
