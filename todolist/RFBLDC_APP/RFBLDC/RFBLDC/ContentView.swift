@@ -29,8 +29,6 @@ enum BTDeviceName: String{
     case Default
 }
 
-var BTName: BTDeviceName = .Default
-
 
 
 var GLBPeripheral : CBPeripheral?
@@ -66,6 +64,7 @@ class BluetoothViewModel: NSObject, ObservableObject{
     var sendCharacteristic: [CBCharacteristic]?
     var BTmodule: CBPeripheral?
     @Published var PID_Parameters = PID_Parameter_Class()
+    var BTName: BTDeviceName = .Default
     
     override init(){
         super.init()
@@ -170,6 +169,9 @@ extension BluetoothViewModel: CBCentralManagerDelegate{
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         print("Disconnected from peripheral")
         PeripheralStatus = .disconnected
+        self.centralManager? .scanForPeripherals(withServices: nil)
+        PeripheralStatus = .scaning
+        BTName = .Default
     }
 }
 
@@ -249,6 +251,7 @@ extension BluetoothViewModel: CBPeripheralDelegate{
                     let messageString = messagrString0[..<sepratorRange.lowerBound]
                     print("BAT: \(messageString)")
                     Voltage = String(messageString)
+                    Message = String(messageString)
                 }
             }
             else if let prefixRange = bufferString.range(of: "0X31")
@@ -348,28 +351,7 @@ struct ContentView: View{
                         }
                         .foregroundColor(.gray)
                         .navigationTitle("Devices list:")
-                      //  ImageView()
-                        switch BTName
-                        {
-                        case .GoKart:
-                            Image("942 Image").resizable()
-                                .frame(width: 150, height: 150)
-                            Text("942 Extream Go-Kart")
-                        case .EWagon:
-                                Image("EWagon Image").resizable()
-                                .frame(width: 150, height: 150)
-                            VStack{
-                                Text("Radioflyer E-Wagon")
-                            }
-                            //                break
-                        case .Drone:
-                            //               Image("Drone Image").resizable()
-                            //                    .frame(width: 150, height: 150)
-                            Text("Drone: KV.1")
-                        case .Default:
-                            Text("Unknown product")
-                            
-                        }
+                        ImageView()
                         Text("Message:\(bluetoothViewModel.Message)")
                             .frame(width: 380, height: 30,alignment: .leading)
                             .font(.headline)
@@ -431,8 +413,9 @@ struct BatteryView : View{
 }
 
 struct ImageView: View{
+    @StateObject private var bluetoothViewModel = BluetoothViewModel()
     var body: some View{
-        switch BTName
+        switch bluetoothViewModel.BTName
         {
         case .GoKart:
             Image("942 Image").resizable()
